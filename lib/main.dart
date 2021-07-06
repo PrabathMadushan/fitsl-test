@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,6 +45,15 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(image: AssetImage("assets/wimage.jpg")),
+                ],
+              ),
+              SizedBox.fromSize(
+                size: Size.square(20),
+              ),
               Container(
                 child: Text(
                   "Welcome to",
@@ -54,9 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: Size.square(3),
               ),
               Container(
-                child: Text(
-                  "Fitness-SL App",
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Fitness-SL",
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold,color: Color.fromRGBO(79, 185, 188, 1)),
+                    ),Text(
+                      " App",
+                      style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
               ),
               SizedBox.fromSize(
@@ -72,22 +90,44 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox.fromSize(
-                size: Size.square(20),
+                size: Size.square(30),
               ),
               OutlinedButton.icon(
                 onPressed: () {
                   print("google sign in");
                 },
-                icon: Icon(
-                  Icons.access_alarm,
-                  size: 28,
+                icon: FaIcon(
+                  FontAwesomeIcons.google,
+                  color: Colors.black,
                 ),
                 label: Text(
                   "Login With Google",
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 style: OutlinedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  side: BorderSide(color: Colors.black, width: 1),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                ),
+              ),
+              SizedBox.fromSize(
+                size: Size.square(10),
+              ),
+              OutlinedButton.icon(
+                onPressed: () {
+                  print("google sign in");
+                },
+                icon: FaIcon(
+                  FontAwesomeIcons.facebookF,
+                  color: Colors.black,
+                ),
+                label: Text(
+                  "Login With Facebook",
+                  style: TextStyle(color: Colors.black, fontSize: 18),
+                ),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                   side: BorderSide(color: Colors.black, width: 1),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -96,25 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox.fromSize(
                 size: Size.square(20),
               ),
-              OutlinedButton.icon(
-                onPressed: () {
-                  print("google sign in");
-                },
-                icon: Icon(
-                  Icons.access_alarm,
-                  size: 28,
-                ),
-                label: Text(
-                  "Login With Facebook",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                ),
-                style: OutlinedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                  side: BorderSide(color: Colors.black, width: 1),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                ),
-              )
+              Text("Not a member? Sign Up")
             ],
           ),
         ),
