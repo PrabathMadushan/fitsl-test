@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918476257761",
+    "project_id": "fitsl-test",
+    "storage_bucket": "fitsl-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918476257761:android:a141feed1b882b962efaa0",
+        "android_client_info": {
+          "package_name": "com.prabath.fitls"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918476257761-blhihja9t2o1s052va273lknjfkc97dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-WblylouEN-miVzxmxZ2Sem-DNFC9B2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918476257761-blhihja9t2o1s052va273lknjfkc97dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
