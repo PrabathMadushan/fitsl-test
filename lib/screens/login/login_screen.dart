@@ -1,5 +1,6 @@
 import 'package:fitls/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,7 +12,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool loading = false;
+
   final AuthService authService = new AuthService();
+
+  void googleLogin() async {
+    setState(() {
+      loading = true;
+    });
+    try {
+      await authService.signWithGoogle();
+      Navigator.pushNamed(context, '/home').then((value) => setState(() {
+            loading = false;
+          }));
+    } catch (e) {
+      print("error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,56 +89,77 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox.fromSize(
               size: Size.square(30),
             ),
-            OutlinedButton.icon(
-              onPressed: () async {
-                try {
-                  await authService.signWithGoogle();
-                  Navigator.pushNamed(context, '/home');
-                } catch (e) {
-                  print("error");
-                }
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.google,
-                color: Colors.black,
-              ),
-              label: Text(
-                "Login With Google",
-                style: TextStyle(color: Colors.black, fontSize: 18),
-              ),
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                side: BorderSide(color: Colors.black, width: 1),
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+            Container(
+              child: Builder(
+                builder: (context) {
+                  if (loading) {
+                    return SpinKitFadingCircle(
+                      itemBuilder: (BuildContext context, int index) {
+                        return DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: index.isEven
+                                ? Color.fromRGBO(79, 185, 188, 1)
+                                : Colors.black,
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        OutlinedButton.icon(
+                          onPressed: googleLogin,
+                          icon: FaIcon(
+                            FontAwesomeIcons.google,
+                            color: Colors.black,
+                          ),
+                          label: Text(
+                            "Login With Google",
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 50),
+                            side: BorderSide(color: Colors.black, width: 1),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                          ),
+                        ),
+                        SizedBox.fromSize(
+                          size: Size.square(10),
+                        ),
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            print("google sign in");
+                          },
+                          icon: FaIcon(
+                            FontAwesomeIcons.facebookF,
+                            color: Colors.black,
+                          ),
+                          label: Text(
+                            "Login With Facebook",
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 50),
+                            side: BorderSide(color: Colors.black, width: 1),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                          ),
+                        ),
+                        SizedBox.fromSize(
+                          size: Size.square(20),
+                        ),
+                        Text("Not a member? Sign Up")
+                      ],
+                    );
+                  }
+                },
               ),
             ),
-            SizedBox.fromSize(
-              size: Size.square(10),
-            ),
-            OutlinedButton.icon(
-              onPressed: () {
-                print("google sign in");
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.facebookF,
-                color: Colors.black,
-              ),
-              label: Text(
-                "Login With Facebook",
-                style: TextStyle(color: Colors.black, fontSize: 18),
-              ),
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                side: BorderSide(color: Colors.black, width: 1),
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-              ),
-            ),
-            SizedBox.fromSize(
-              size: Size.square(20),
-            ),
-            Text("Not a member? Sign Up")
           ],
         ),
       ),

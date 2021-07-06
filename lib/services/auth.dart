@@ -16,4 +16,8 @@ class AuthService {
     return await _auth.signInWithCredential(credential);
   }
 
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+
 }

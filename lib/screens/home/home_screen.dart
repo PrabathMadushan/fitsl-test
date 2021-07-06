@@ -1,3 +1,4 @@
+import 'package:fitls/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,19 +11,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final AuthService authService = new AuthService();
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Center(
-        child:Text("Home")
+        child:Text("Welcome "+(authService.getCurrentUser()?.email ?? "not available"))
       ),
     );
   }
