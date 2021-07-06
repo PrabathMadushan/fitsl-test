@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "918476257761-5burtcm0e2sr76pqrhcdgfjjarj8uqcg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prabath.fitls",
+            "certificate_hash": "038b34dd66bfc4c67bc38ecfd96370cee4a2f82f"
+          }
+        },
+        {
           "client_id": "918476257761-blhihja9t2o1s052va273lknjfkc97dd.apps.googleusercontent.com",
           "client_type": 3
         }
